@@ -59,7 +59,7 @@ public:
     {
         printf("Test\n");
     }
-    ~Test()
+    virtual ~Test()
     {
         printf("~Test\n");
     }
@@ -76,6 +76,7 @@ public:
         printf("~Test2\n");
     }
 };
+
 int main()
 {
     Test* t;
@@ -92,31 +93,37 @@ int main()
 // 様々な型で計算できるようにしてください。
 
 template <typename T>
-void Calc(float a, float b, int type)
+T Add(T a, T b)
 {
-    float ans = 0;
-    switch (type)
-    {
-    case 0:
-        ans = a + b;
-        break;
-    case 1:
-        ans = a - b;
-        break;
-    case 2:
-        ans = a * b;
-        break;
-    case 3:
-        ans = a / b;
-        break;
-    }
+    return a + b;
+}
+template <typename T>
+T Sub(T a, T b)
+{
+    return a - b;
+}
+template <typename T>
+T Mul(T a, T b)
+{
+    return a * b;
+}
+template <typename T>
+T Div(T a, T b)
+{
+    return a / b;
 }
 
 int main()
 {
-    Calc<int>(2, 5, 0);
-    Calc<float>(10.0f, 2.5f, 3);
-    Calc<char>(10, 4, 2);
+    int ans1;
+    float ans2;
+    char ans3;
+
+    ans1 = Add<int>(2, 5);
+    ans2 = Div<float>(10.0f, 2.5f);
+    ans3 = Mul<char>(10, 4);
+
+    return 0;
 }
 
 
@@ -136,7 +143,10 @@ int main()
     std::list<int> lst;
     for (int i = 100; i > 1; --i)
     {
-        // ここにプログラムを記述
+        if (i % 10 == 0)
+        {
+            lst.push_front(i);
+        }
     }
 
     for (std::list<int>::const_iterator it = lst.begin(); it != lst.end(); ++it)
