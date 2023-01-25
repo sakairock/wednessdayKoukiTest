@@ -1,56 +1,49 @@
-#include <stdio.h>
-#include <list>
-#include <vector>
-
-// ‘æ1–â(10“_)
-// ˆÈ‰º‚ÌƒNƒ‰ƒX‚ÉƒRƒ“ƒXƒgƒ‰ƒNƒ^AƒfƒXƒgƒ‰ƒNƒ^‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^AƒfƒXƒgƒ‰ƒNƒ^‚Ìˆ—‚Ì“à—e‚Í‚È‚ñ‚Å‚à\‚¢‚Ü‚¹‚ñ
+// ç¬¬1å•(10ç‚¹)
+// ä»¥ä¸‹ã®ã‚¯ãƒ©ã‚¹ã«ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®å‡¦ç†ã®å†…å®¹ã¯ãªã‚“ã§ã‚‚æ§‹ã„ã¾ã›ã‚“
 
 class Point
 {
 public:
-    //ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-    Point();
-    //ƒfƒXƒgƒ‰ƒNƒ^
-    ~Point();
+    Point ( int x1, int y1);
+    ~Point ();
+    
 private:
     int x;
     int y;
 };
 
-Point::Point()
+Point::Point(int x1,int y1)
 {
-
+    x = x1;
+    y = y1;
 }
 Point::~Point()
 {
-
+    x = 0;
+    y = 0;
 }
 
 
 
-// ‘æ2–â(10“_)
-// intŒ^‚Ì•Ï”‚ğnew‚ğg‚¢Šm•Û‚µ‚Ä‚­‚¾‚³‚¢B
-// ‚Ü‚½AcharŒ^‚Ì”z—ñ‚ğnew‚ğg‚¢Šm•Û‚µ‚Ä‚­‚¾‚³‚¢B
-// ‚Ç‚¿‚ç‚àdelete‚ğŒÄ‚Ño‚·‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B
+// ç¬¬2å•(10ç‚¹)
+// intå‹ã®å¤‰æ•°ã‚’newã‚’ä½¿ã„ç¢ºä¿ã—ã¦ãã ã•ã„ã€‚
+// ã¾ãŸã€charå‹ã®é…åˆ—ã‚’newã‚’ä½¿ã„ç¢ºä¿ã—ã¦ãã ã•ã„ã€‚
+// ã©ã¡ã‚‰ã‚‚deleteã‚’å‘¼ã³å‡ºã™ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚
 
-int main()
-{
-    int* pNum = new int;
-    char* pArray = new char[10];
-
-    *pNum = 100;
-    *pArray = { 'a' };
-
-    delete pNum;
-    delete[] pArray;
-}
+    int main()
+    {
+        int *p = new int(10);
+        char* s = new char[100];
+        delete p;
+        delete[] s;
+    }
 
 
 
-// ‘æ3–â(15“_)
-// ˆÈ‰º‚ÌŒp³æƒNƒ‰ƒX‚ÌƒfƒXƒgƒ‰ƒNƒ^‚ª³‚µ‚­ŒÄ‚Ño‚³‚ê‚é‚æ‚¤‚ÉA
-// ƒNƒ‰ƒX‚ğC³‚µ‚Ä‚­‚¾‚³‚¢B
+// ç¬¬3å•(15ç‚¹)
+// ä»¥ä¸‹ã®ç¶™æ‰¿å…ˆã‚¯ãƒ©ã‚¹ã®ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãŒæ­£ã—ãå‘¼ã³å‡ºã•ã‚Œã‚‹ã‚ˆã†ã«ã€
+// ã‚¯ãƒ©ã‚¹ã‚’ä¿®æ­£ã—ã¦ãã ã•ã„ã€‚
 
 class Test
 {
@@ -59,7 +52,7 @@ public:
     {
         printf("Test\n");
     }
-    virtual ~Test()
+    ~Test()
     {
         printf("~Test\n");
     }
@@ -76,11 +69,10 @@ public:
         printf("~Test2\n");
     }
 };
-
 int main()
 {
-    Test* t;
-    t = new Test2();
+    Test* t = new Test2;
+    t->~Test();
 
     delete t;
     return 0;
@@ -88,29 +80,30 @@ int main()
 
 
 
-// ‘æ4–â(25“_)
-// ˆÈ‰º‚ÌŠÖ”‚ğƒeƒ“ƒvƒŒ[ƒg‰»‚µ‚ÄA
-// —lX‚ÈŒ^‚ÅŒvZ‚Å‚«‚é‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B
+// ç¬¬4å•(25ç‚¹)
+// ä»¥ä¸‹ã®é–¢æ•°ã‚’ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆåŒ–ã—ã¦ã€
+// æ§˜ã€…ãªå‹ã§è¨ˆç®—ã§ãã‚‹ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚
 
-template <typename T>
-T Add(T a, T b)
+float Calc( float a, float b, int type)
 {
-    return a + b;
-}
-template <typename T>
-T Sub(T a, T b)
-{
-    return a - b;
-}
-template <typename T>
-T Mul(T a, T b)
-{
-    return a * b;
-}
-template <typename T>
-T Div(T a, T b)
-{
-    return a / b;
+    float ans = 0;
+    switch(type)
+    {
+        case 0:
+            ans = a + b;
+            break;
+        case 1:
+            ans = a - b;
+            break;
+        case 2:
+            ans = a * b;
+            break;
+        case 3:
+            ans = a / b;
+            break;
+    }
+    
+    return ans;
 }
 
 int main()
@@ -118,57 +111,53 @@ int main()
     int ans1;
     float ans2;
     char ans3;
-
-    ans1 = Add<int>(2, 5);
-    ans2 = Div<float>(10.0f, 2.5f);
-    ans3 = Mul<char>(10, 4);
-
+    
+    ans1 = Calc<int>(2,5,0);
+    ans2 = Calc<float>(10.0f,2.5f,3);
+    ans3 = Calc<char>(10,4,2);
+    
     return 0;
 }
 
 
 
-// ‘æ5–â(25“_)
-// Ÿ‚ÌƒvƒƒOƒ‰ƒ€‚ğC³‚µAˆÈ‰º‚Ì‚æ‚¤‚È•\¦‚É‚È‚é‚æ‚¤‚ÉƒvƒƒOƒ‰ƒ€‚ğì¬‚µ‚Ä‚­‚¾‚³‚¢B
+// ç¬¬5å•(25ç‚¹)
+// æ¬¡ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ä¿®æ­£ã—ã€ä»¥ä¸‹ã®ã‚ˆã†ãªè¡¨ç¤ºã«ãªã‚‹ã‚ˆã†ã«ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ä½œæˆã—ã¦ãã ã•ã„ã€‚
 // num = 50
 // num = 40
 // num = 30
 // num = 20
 // num = 10
-// ‚Ü‚½AƒŠƒXƒg‚Ìƒf[ƒ^‚ª30‚µ‚©‚È‚¢ó‘Ô‚É‚µ‚Ä‚­‚¾‚³‚¢B‚»‚ÌÛ•\¦‚ÍˆÈ‰º‚Ì‚É‚È‚è‚Ü‚·B
+// ã¾ãŸã€ãƒªã‚¹ãƒˆã®ãƒ‡ãƒ¼ã‚¿ãŒ30ã—ã‹ãªã„çŠ¶æ…‹ã«ã—ã¦ãã ã•ã„ã€‚ãã®éš›è¡¨ç¤ºã¯ä»¥ä¸‹ã®ã«ãªã‚Šã¾ã™ã€‚
 // num = 30
 
 int main()
 {
     std::list<int> lst;
-    for (int i = 100; i > 1; --i)
+    for( int i = 0; i < 5; ++i)
     {
-        if (i % 10 == 0)
-        {
-            lst.push_front(i);
-        }
+        
     }
-
-    for (std::list<int>::const_iterator it = lst.begin(); it != lst.end(); ++it)
+    
+    for( std::list<int>::const_iterator it = lst.begin(); it != lst.end(); ++it)
     {
         printf("num = %d\n", *it);
     }
 
-    // ƒŠƒXƒg‚ğC³‚µ‚Änum=30‚Æ•\¦‚³‚ê‚é‚æ‚¤‚ÉƒvƒƒOƒ‰ƒ€‚ğ‹Lq
 }
 
 
 
-// ‘æ6–â(25“_)
-// ‘æ5–â‚Æ“¯‚¶•\¦‚É‚È‚é‚æ‚¤‚Éstd::vector‚ğg‚Á‚ÄƒvƒƒOƒ‰ƒ€‚ğ‹Lq‚µ‚Ä‚­‚¾‚³‚¢B
+// ç¬¬6å•(25ç‚¹)
+// ç¬¬5å•ã¨åŒã˜è¡¨ç¤ºã«ãªã‚‹ã‚ˆã†ã«std::vectorã‚’ä½¿ã£ã¦ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’è¨˜è¿°ã—ã¦ãã ã•ã„ã€‚
 
 int main()
 {
     std::vector<int> vec;
 
-    for (int i = 100; i > 1; --i)
+    for (int i = 10; i <= 50; ++i)
     {
-        if (i % 10 == 0 && i <= 50)
+        if (i % 10 == 0)
         {
             vec.push_back(i);
         }
@@ -178,4 +167,5 @@ int main()
     {
         printf("num = %d\n", *it);
     }
+
 }
